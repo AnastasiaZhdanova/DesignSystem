@@ -52,7 +52,6 @@ public struct DSAlert: View {
 public class UIDSAlert {
     public let view: UIView
 
-    
     private let type: DesignSystemAlertType
     private let tapAction: () -> Void
     

@@ -22,19 +22,23 @@ struct ShowroomApp: App {
         WindowGroup {
             ZStack {
                 VStack(spacing: 4) {
+                    Text("SwiftUI")
+                        .padding(.top, 80)
+                    
                     Spacer()
                     
                     if showAlertView {
-                        presentViewAlert()
+                        presentViewAlert {
+                            toggleViewAlert()
+                        }
                     }
-                    
-                    Text("SwiftUI")
-                    
-                    demoBittons
+                    demoButtons
                 }
                 
                 if showAlertScreen {
-                    presentScreenAlert()
+                    presentScreenAlert {
+                        toggleScreenAlert()
+                    }
                 }
             }
         }
@@ -43,8 +47,8 @@ struct ShowroomApp: App {
 
 private extension ShowroomApp {
     // MARK: - Alert View
-    func presentViewAlert() -> AnyView {
-        let type: DesignSystemAlertType = {
+    func presentViewAlert(_ completion: @escaping () -> Void) -> AnyView {
+        var type: DesignSystemAlertType {
             switch selectedType {
             case .successView, .successScreen:
                 return .success(title: "Success Message")
@@ -53,16 +57,14 @@ private extension ShowroomApp {
             case .notifyView, .notifyScreen:
                 return .notify(title: "Notification Message")
             }
-        }()
+        }
         
         return AnyView(
-            DSAlert(type: type, tapAction: {
-                self.toggleViewAlert()
-            })
+            DSAlert(type: type, tapAction: completion)
         )
     }
     
-    func presentScreenAlert() -> AnyView {
+    func presentScreenAlert(_ completion: @escaping () -> Void) -> AnyView {
         let type: DesignSystemAlertType = {
             switch selectedType {
             case .successView, .successScreen:
@@ -74,17 +76,15 @@ private extension ShowroomApp {
             }
         }()
         
-        return designSystem.swiftUIAlert(withType: type) {
-            self.toggleScreenAlert()
-        }
+        return designSystem.swiftUIAlert(withType: type, completion)
     }
     
     // MARK: - Demo Buttons
-    var demoBittons: some View {
+    var demoButtons: some View {
         VStack(spacing: 8) {
             successButtons
-            notifyButtons
             errorButtons
+            notifyButtons
         }
         .padding()
     }
@@ -111,93 +111,59 @@ private extension ShowroomApp {
     }
     
     var successScreenDemoButton: some View {
-        Text("Success Screen Demo")
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .font(.system(size: 12))
-            .padding()
-            .foregroundStyle(Color.black)
-            .overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color.black, lineWidth: 2)
-            )
+        textView("Success Screen Demo")
             .onTapGesture {
                 demoTapAction(.successScreen)
             }
     }
     
     var successViewDemoButton: some View {
-        Text("Success View Demo")
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .font(.system(size: 12))
-            .padding()
-            .foregroundStyle(Color.black)
-            .overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color.black, lineWidth: 2)
-            )
+        textView("Success View Demo")
             .onTapGesture {
                 demoTapAction(.successView)
             }
     }
     
     var errorScreenDemoButton: some View {
-        Text("Error Screen Demo")
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .font(.system(size: 12))
-            .padding()
-            .foregroundStyle(Color.black)
-            .overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color.black, lineWidth: 2)
-            )
+        textView("Error Screen Demo")
             .onTapGesture {
                 demoTapAction(.errorScreen)
             }
     }
     
     var errorViewDemoButton: some View {
-        Text("Error View Demo")
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .font(.system(size: 12))
-            .padding()
-            .foregroundStyle(Color.black)
-            .overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color.black, lineWidth: 2)
-            )
+        textView("Error View Demo")
             .onTapGesture {
                 demoTapAction(.errorView)
             }
     }
     
     var notifyScreenDemoButton: some View {
-        Text("Notify Screen Demo")
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .font(.system(size: 12))
-            .padding()
-            .foregroundStyle(Color.black)
-            .overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color.black, lineWidth: 2)
-            )
+        textView("Notify Screen Demo")
             .onTapGesture {
                 demoTapAction(.notifyScreen)
             }
     }
     
     var notifyViewDemoButton: some View {
-        Text("Notify View Demo")
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .font(.system(size: 12))
-            .padding()
-            .foregroundStyle(Color.black)
-            .overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color.black, lineWidth: 2)
-            )
+        textView("Notify View Demo")
             .onTapGesture {
                 demoTapAction(.notifyView)
             }
+    }
+    
+    func textView(_ text: String) -> AnyView {
+        AnyView(
+            Text(text)
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .font(.system(size: 12))
+                .padding()
+                .foregroundStyle(Color.black)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 25)
+                        .stroke(Color.black, lineWidth: 2)
+                )
+        )
     }
     
     // MARK: - Demo Actions

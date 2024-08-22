@@ -4,11 +4,9 @@ struct DesignSystemAlertView: View  {
     @State var titleText: String
     @State var titleAccessibilityLabel: String
     @State var titleAccessibilityHint: String
-    
     @State var imageName: String
     @State var imageAccessibilityLabel: String
     @State var imageAccessibilityHint: String
-    
     @State var color: Color
     
     var tapAction: () -> Void
@@ -64,8 +62,6 @@ private extension DesignSystemAlertView {
             .onTapGesture(perform: tapAction)
             .accessibilityLabel("Close button")
             .accessibilityHint("Tap to close alert")
-            .accessibilityAction(named: "Close") {
-                tapAction()
-            }
+            .accessibilityAction(named: "Close", tapAction)
     }
 }

@@ -120,6 +120,7 @@ class DesignSystemAlertViewModelImpl: DesignSystemAlertViewModel {
     func closeButtonTapped() {
         changeOffset(-300)
         
+        // needed to smooth alert dissapearing with animation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.closeTapped()
         }
