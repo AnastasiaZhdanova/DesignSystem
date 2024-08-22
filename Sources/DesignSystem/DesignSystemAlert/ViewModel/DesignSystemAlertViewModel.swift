@@ -16,6 +16,28 @@ public enum DesignSystemAlertType {
         }
     }
     
+    var imageAccessibilityLabel: String {
+        switch self {
+        case .error:
+            return "error image"
+        case .success:
+            return "success image"
+        case .notify:
+            return "notify image"
+        }
+    }
+    
+    var imageAccessibilityHint: String {
+        switch self {
+        case .error:
+            return "error message hint"
+        case .success:
+            return "success message hint"
+        case .notify:
+            return "bell message hint"
+        }
+    }
+    
     var title: String {
         switch self {
         case .error(let title):
@@ -26,6 +48,17 @@ public enum DesignSystemAlertType {
             return "Notification: \(title)"
         }
     }
+    
+    var titleAccessibilityLabel: String {
+        // should to provide additional accessability hint text for all cases
+        return title
+    }
+    
+    var titleAccessibilityHint: String {
+        // should to provide additional accessability hint text for all cases
+        return title
+    }
+    
     
     var color: Color {
         switch self {
@@ -43,6 +76,10 @@ protocol DesignSystemAlertViewModel: ObservableObject {
     var offsetYValue: Double { get }
     var imageName: String { get }
     var title: String { get }
+    var titleAccessibilityLabel: String { get }
+    var titleAccessibilityHint: String { get }
+    var imageAccessibilityLabel: String { get }
+    var imageAccessibilityHint: String { get }
     var color: Color { get }
     
     func onAppear()
@@ -52,16 +89,26 @@ protocol DesignSystemAlertViewModel: ObservableObject {
 
 class DesignSystemAlertViewModelImpl: DesignSystemAlertViewModel {
     @Published var offsetYValue: Double = -300
-    @Published var imageName: String
-    @Published var title: String
     @Published var color: Color
+    
+    @Published var title: String
+    @Published var titleAccessibilityLabel: String
+    @Published var titleAccessibilityHint: String
+    
+    @Published var imageName: String
+    @Published var imageAccessibilityLabel: String
+    @Published var imageAccessibilityHint: String
     
     private var closeTapped: () -> Void
     
     init(type: DesignSystemAlertType,
          _ completion: @escaping() -> Void) {
         self.imageName = type.imageName
+        self.imageAccessibilityLabel = type.imageAccessibilityLabel
+        self.imageAccessibilityHint = type.imageAccessibilityHint
         self.title = type.title
+        self.titleAccessibilityLabel = type.titleAccessibilityLabel
+        self.titleAccessibilityHint = type.titleAccessibilityHint
         self.color = type.color
         self.closeTapped = completion
     }
@@ -72,7 +119,7 @@ class DesignSystemAlertViewModelImpl: DesignSystemAlertViewModel {
     
     func closeButtonTapped() {
         changeOffset(-300)
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.closeTapped()
         }

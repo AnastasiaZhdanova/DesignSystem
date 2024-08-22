@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         successScreenDemoButton.setTitle("Success Screen Demo", for: .normal)
         successScreenDemoButton.titleLabel?.font =  UIFont.systemFont(ofSize: 12)
         successScreenDemoButton.setTitleColor(.black, for: .normal)
-        successScreenDemoButton.layer.cornerRadius = 25
+        successScreenDemoButton.layer.cornerRadius = 12
         successScreenDemoButton.layer.borderWidth = 1
         successScreenDemoButton.layer.borderColor = UIColor.black.cgColor
         successScreenDemoButton.addTarget(self,
@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         successViewDemoButton.setTitle("Success View Demo", for: .normal)
         successViewDemoButton.titleLabel?.font =  UIFont.systemFont(ofSize: 12)
         successViewDemoButton.setTitleColor(.black, for: .normal)
-        successViewDemoButton.layer.cornerRadius = 25
+        successViewDemoButton.layer.cornerRadius = 12
         successViewDemoButton.layer.borderWidth = 1
         successViewDemoButton.layer.borderColor = UIColor.black.cgColor
         successViewDemoButton.addTarget(self,
@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         errorScreenDemoButton.setTitle("Error Screen Demo", for: .normal)
         errorScreenDemoButton.titleLabel?.font =  UIFont.systemFont(ofSize: 12)
         errorScreenDemoButton.setTitleColor(.black, for: .normal)
-        errorScreenDemoButton.layer.cornerRadius = 25
+        errorScreenDemoButton.layer.cornerRadius = 12
         errorScreenDemoButton.layer.borderWidth = 1
         errorScreenDemoButton.layer.borderColor = UIColor.black.cgColor
         errorScreenDemoButton.addTarget(self,
@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         errorViewDemoButton.setTitle("Error View Demo", for: .normal)
         errorViewDemoButton.titleLabel?.font =  UIFont.systemFont(ofSize: 12)
         errorViewDemoButton.setTitleColor(.black, for: .normal)
-        errorViewDemoButton.layer.cornerRadius = 25
+        errorViewDemoButton.layer.cornerRadius = 12
         errorViewDemoButton.layer.borderWidth = 1
         errorViewDemoButton.layer.borderColor = UIColor.black.cgColor
         errorViewDemoButton.addTarget(self,
@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notifyScreenDemoButton.setTitle("Notify Screen Demo", for: .normal)
         notifyScreenDemoButton.titleLabel?.font =  UIFont.systemFont(ofSize: 12)
         notifyScreenDemoButton.setTitleColor(.black, for: .normal)
-        notifyScreenDemoButton.layer.cornerRadius = 25
+        notifyScreenDemoButton.layer.cornerRadius = 12
         notifyScreenDemoButton.layer.borderWidth = 1
         notifyScreenDemoButton.layer.borderColor = UIColor.black.cgColor
         notifyScreenDemoButton.addTarget(self,
@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notifyViewDemoButton.setTitle("Notify View Demo", for: .normal)
         notifyViewDemoButton.titleLabel?.font =  UIFont.systemFont(ofSize: 12)
         notifyViewDemoButton.setTitleColor(.black, for: .normal)
-        notifyViewDemoButton.layer.cornerRadius = 25
+        notifyViewDemoButton.layer.cornerRadius = 12
         notifyViewDemoButton.layer.borderWidth = 1
         notifyViewDemoButton.layer.borderColor = UIColor.black.cgColor
         notifyViewDemoButton.addTarget(self,

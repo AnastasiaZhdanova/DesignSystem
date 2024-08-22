@@ -39,7 +39,11 @@ public struct DSAlert: View {
     
     public var body: some View {
         DesignSystemAlertView(titleText: type.title,
+                              titleAccessibilityLabel: type.titleAccessibilityLabel,
+                              titleAccessibilityHint: type.titleAccessibilityHint,
                               imageName: type.imageName,
+                              imageAccessibilityLabel: type.imageAccessibilityLabel,
+                              imageAccessibilityHint: type.imageAccessibilityHint,
                               color: type.color,
                               tapAction: tapAction)
     }
@@ -58,7 +62,11 @@ public class UIDSAlert {
         self.tapAction = tapAction
         
         let view = DesignSystemAlertView(titleText: type.title,
+                                         titleAccessibilityLabel: type.titleAccessibilityLabel,
+                                         titleAccessibilityHint: type.titleAccessibilityHint,
                                          imageName: type.imageName,
+                                         imageAccessibilityLabel: type.imageAccessibilityLabel,
+                                         imageAccessibilityHint: type.imageAccessibilityHint,
                                          color: type.color,
                                          tapAction: tapAction)
         
